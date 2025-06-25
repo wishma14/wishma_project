@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student-Teacher Meeting Scheduler</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <div class="container" id="roleSelection">
+    <h2>Select Panel</h2>
+    <button onclick="window.app.enterPanel('student')">Student Panel</button>
+    <button onclick="window.app.enterPanel('teacher')">Teacher Panel</button>
+  </div>
+
+  <div class="container hidden" id="studentListPanel">
+    <h2>Select Student</h2>
+    <div id="studentButtons"></div>
+    <button onclick="window.app.goHome()">Back</button>
+  </div>
+
+  <div class="container hidden" id="studentPanel">
+    <h2><span id="studentPanelName">Student</span> - Student Panel</h2>
+    <p><strong>Name:</strong> <span id="studentDetailName"></span></p>
+    <p><strong>Program:</strong> <span id="studentDetailProgram"></span></p>
+    <p><strong>Course:</strong> <span id="studentDetailCourse"></span></p>
+    <p><strong>Project Name:</strong> <span id="studentDetailProject"></span></p>
+    <p><strong>Project Advisor:</strong> <span id="studentDetailAdvisor"></span></p>
+    <button onclick="window.app.showScreen('meetingSchedule')">Request Meeting</button>
+    <button onclick="window.app.showScreen('requestStatus')">View Request Status</button>
+    <button onclick="window.app.showStudentNotifications()">Notifications</button>
+    <button onclick="window.app.showStudentListScreen()">Back to Student List</button>
+  </div>
+
+  <div class="container hidden" id="meetingSchedule">
+    <h2>Schedule a Meeting</h2>
+    <label for="meetingDate">Date:</label> <input type="date" id="meetingDate" />
+    <label for="meetingTime">Time:</label> <input type="time" id="meetingTime" />
+    <label for="meetingVenue">Venue:</label> <input type="text" id="meetingVenue" placeholder="Enter venue" />
+    <label for="meetingNote">Meeting Key Points:</label> <textarea id="meetingNote" rows="4" placeholder="Enter note for the meeting..."></textarea>
+    <button onclick="window.app.sendRequest()">Send Request</button>
+    <button onclick="window.app.clearMeetingForm()">Clear</button>
+    <button onclick="window.app.showScreen('studentPanel')">Back</button>
+  </div>
+
+  <div class="container hidden" id="requestStatus">
+    <h2>Request Status</h2>
+    <div id="statusList"></div>
+    <button onclick="window.app.showScreen('studentPanel')">Back</button>
+  </div>
+
+  <div class="container hidden" id="studentNotifications">
+    <h2>Notifications</h2>
+    <div id="notificationList"></div>
+    <button onclick="window.app.showScreen('studentPanel')">Back</button>
+  </div>
+
+  <div class="container hidden" id="teacherPanel">
+    <h2>Teacher Panel</h2>
+    <p><strong>Name:</strong> SIR USMAN (Teacher)</p>
+    <p><strong>Course:</strong> Web Technology</p>
+    <h3>All Meeting Requests</h3>
+    <div id="teacherRequestList"></div>
+    <button onclick="window.app.showScreen('teacherMeetingNote')">Send Note to Students with Pending Requests</button>
+    <button onclick="window.app.goHome()">Back</button>
+  </div>
+
+  <div class="container hidden" id="teacherMeetingNote">
+    <h2>Send Note to Students</h2>
+    <label for="teacherNoteContent">Message / Meeting Agenda:</label>
+    <textarea id="teacherNoteContent" rows="4" placeholder="Enter meeting agenda or notes for students with PENDING requests..."></textarea>
+    <button onclick="window.app.sendTeacherNoteToStudents()">Send Note</button>
+    <button onclick="window.app.showScreen('teacherPanel')">Back</button>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
